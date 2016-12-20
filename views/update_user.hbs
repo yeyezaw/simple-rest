@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>{{title}}</title>
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha.5/css/bootstrap-flex.min.css">
+  </head>
+  <body>
+
+    <div class="container">
+        <h1>This profile account is : {{user.username}} </h1>
+          <form  action="/users/all/{{user.id}}?_method=PUT" method="POST">
+            <div class="form-group row">
+              <label for="inputUsername3" class="col-sm-2 col-form-label">Username</label>
+              <div class="col-sm-10">
+                <input type="text" name="username" class="form-control" id="inputUsername3" value="{{user.username}}">
+              </div>
+            </div>
+            <div class="form-group row">
+              <label for="inputEmail3" class="col-sm-2 col-form-label">Email</label>
+              <div class="col-sm-10">
+                <input type="email" name="email" class="form-control" id="inputEmail3" value="{{user.email}}">
+              </div>
+            </div>
+            <div class="form-group row">
+              <label for="inputPassword3" class="col-sm-2 col-form-label">Password</label>
+              <div class="col-sm-10">
+                <input type="password" name="password" class="form-control" id="inputPassword3" value="{{user.password}}">
+              </div>
+            </div>
+            <div class="form-group row">
+              <label for="inputPhone3" class="col-sm-2 col-form-label">Phone</label>
+              <div class="col-sm-10">
+                <input type="number" name="phone" class="form-control" id="inputPhone3" value="{{user.phone}}">
+              </div>
+            </div>
+            <div class="form-group row">
+              <div class="offset-sm-2 col-sm-10">
+                <button type="submit" class="btn btn-primary">Update User</button>
+              </div>
+            </div>
+          </form>
+
+    </div>
+    <div class="container">
+      <form method="POST" action="/users/all/{{user.id}}?_method=DELETE" class="form-horizontal">
+          <legend>Delete Account</legend>
+          <div class="form-group">
+            <p class="col-sm-offset-3 col-sm-9">You can delete your account, but keep in mind this action is irreversible.</p>
+            <div class="col-sm-offset-3 col-sm-9">
+              <button type="submit" class="btn btn-danger">Delete my account</button>
+            </div>
+          </div>
+      </form>
+      <ul class="nav navbar-nav ">
+          <li><a href="/">Back to home</a></li>
+          <li><a href="/users/all">Go to user list</a></li>
+      </ul>
+    </div>
+
+  </body>
+</html>

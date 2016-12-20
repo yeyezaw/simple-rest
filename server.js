@@ -3,13 +3,14 @@ var app = express();
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 var User = require('./models/User');
-
+var methodOverride = require('method-override');
 
 //connect database
 mongoose.connect('mongodb://localhost/simple-rest');
 
 app.use(bodyParser.urlencoded({extended : true}));
 app.use(bodyParser.json());
+app.use(methodOverride('_method'));
 
 app.set('view engine', 'hbs');
 
@@ -60,7 +61,7 @@ app.get('/users/all/:user_id', function(req,res){
         res.send(err);
       }
       else{
-        res.json(user);
+        res.render('update_user', {title: 'Update User', user: user});
       }
     });
 });
@@ -83,7 +84,7 @@ app.put('/users/all/:user_id', function(req,res){
           res.send(err);
         }
         else{
-          res.send('user updated');
+          res.redirect('/users/all');
         }
       });
     });
@@ -99,7 +100,7 @@ app.delete('/users/all/:user_id', function(req,res){
             res.send(err);
           }
           else{
-            res.send('user successfully deleted!');
+            res.redirect('/users/all');
           }
     });
 });
